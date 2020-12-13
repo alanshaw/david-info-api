@@ -18,10 +18,10 @@
     "couchwatch": "^0.6.0",
     "david": "^13.0.0-alpha.2",
     "express": "^5.0.0-alpha.8",
-    "ioredis": "^4.19.2",
     "lru-cache": "^6.0.0",
     "p-map": "^4.0.0",
     "rc": "^1.2.8",
+    "redis": "^3.0.2",
     "semver": "^7.3.2"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import Redis from 'ioredis'
+import redis from 'redis'
 import LRUCache from 'lru-cache'
 
 const HOUR = 1000 * 60 * 60
@@ -6,21 +6,25 @@ const HOUR = 1000 * 60 * 60
 export class RedisCache {
   constructor (config) {
     if (!config) throw new Error('missing config')
-    if (!config.redisConnectionString) throw new Error('missing redis connection string in config')
-    this._redis = new Redis(config.redisConnectionString, config.ioredis)
+    if (!config.redis) throw new Error('missing redis config')
+    this._redis = redis.createClient(config.redis)
+    this._redis.getAsync = promisify(this._redis.get).bind(this._redis)
+    this._redis.setAsync = promisify(this._redis.set).bind(this._redis)
+    this._redis.delAsync = promisify(this._redis.del).bind(this._redis)
     this._maxAge = config.maxAge ?? HOUR
   }
 
-  get (k) {
-    return this._redis.get(k)
+  async get (k) {
+    const v = JSON.parse(await this._redis.getAsync(k))
+    return v
   }
 
-  set (k, v) {
-    return this._redis.set(k, v, 'PX', this._maxAge)
+  async set (k, v) {
+    await this._redis.setAsync(k, JSON.stringify(v), 'PX', this._maxAge)
   }
 
   del (k) {
-    return this._redis.del(k)
+    return this._redis.delAsync(k)
   }
 }
 

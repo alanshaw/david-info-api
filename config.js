@@ -7,12 +7,8 @@ const DAY = HOUR * 24
 export default rc('david', {
   port: 3000,
   cache: {
-    type: 'memory', // also 'redis' + add additional redisConnectionString and ioredis prop for config
-    maxAge: DAY,
-    ioredis: {
-      keyPrefix: 'info',
-      enableAutoPipelining: true
-    }
+    type: 'memory', // also 'redis' + redis prop for config
+    maxAge: DAY
   },
   npmFeedUrl: 'https://skimdb.npmjs.com/registry'
 })
