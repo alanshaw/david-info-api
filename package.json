@@ -1,0 +1,32 @@
+{
+  "name": "@david-dm/info-api",
+  "version": "0.0.0",
+  "description": "JSON HTTP API for retrieving dependency information for a set of dependencies.",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "david-info-api": "bin/start.js"
+  },
+  "scripts": {
+    "start": "node bin/start.js",
+    "test": "ava --verbose"
+  },
+  "author": "Alan Shaw",
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "couchwatch": "^0.6.0",
+    "david": "^13.0.0-alpha.2",
+    "express": "^5.0.0-alpha.8",
+    "ioredis": "^4.19.2",
+    "lru-cache": "^6.0.0",
+    "p-map": "^4.0.0",
+    "rc": "^1.2.8",
+    "semver": "^7.3.2"
+  },
+  "devDependencies": {
+    "ava": "^3.13.0",
+    "bent": "^7.3.11",
+    "standard": "^16.0.3"
+  }
+}
