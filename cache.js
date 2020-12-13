@@ -6,8 +6,8 @@ const HOUR = 1000 * 60 * 60
 export class RedisCache {
   constructor (config) {
     if (!config) throw new Error('missing config')
-    if (!config.ioredis) throw new Error('missing redis configuration')
-    this._redis = new Redis(config.ioredis)
+    if (!config.redisConnectionString) throw new Error('missing redis connection string in config')
+    this._redis = new Redis(config.redisConnectionString, config.ioredis)
     this._maxAge = config.maxAge ?? HOUR
   }
 

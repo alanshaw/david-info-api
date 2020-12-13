@@ -7,7 +7,7 @@ const DAY = HOUR * 24
 export default rc('info-api', {
   port: 3000,
   cache: {
-    type: 'memory', // also 'redis' + add additional ioredis prop for config
+    type: 'memory', // also 'redis' + add additional redisConnectionString and ioredis prop for config
     maxAge: DAY,
     ioredis: {
       keyPrefix: 'info',
