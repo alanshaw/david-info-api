@@ -8,6 +8,7 @@ import { cors } from './middleware.js'
 export function start (config) {
   if (!config) throw new Error('missing config')
   const cache = config.cache?.type === 'redis' ? new RedisCache(config.cache) : new MemoryCache(config.cache)
+  if (cache instanceof MemoryCache) console.warn('🚨 Using in memory cache')
   const npmWatcher = new NpmWatcher(config.npmFeedUrl)
   const infobase = new Infobase(cache)
 
