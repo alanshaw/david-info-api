@@ -1,5 +1,6 @@
 import redis from 'redis'
 import LRUCache from 'lru-cache'
+import { promisify } from 'util'
 
 const HOUR = 1000 * 60 * 60
 
