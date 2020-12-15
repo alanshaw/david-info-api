@@ -12,7 +12,7 @@ export default class Infobase {
   }
 
   async get (deps) {
-    const info = await this._dependenciesInfo(deps, { semver: { loose: true } })
+    const info = await this._dependenciesInfo(deps, { ignoreNonSemverRange: true, semver: { loose: true } })
     const updatedInfo = updatedDependenciesInfo(info)
     const updatedStableInfo = updatedDependenciesInfo(info, { stable: true })
 
